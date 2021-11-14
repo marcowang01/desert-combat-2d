@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class RobotController : MonoBehaviour
 {   
 	// variables for movement
-	private bool isFacingRight = true;
+	public bool isFacingRight = true;
 	[SerializeField] private float smoothingTime = .05f;
 	private Vector3 inputVelocity = Vector3.zero;
 	public bool isAlive = false;
@@ -36,10 +36,11 @@ public class RobotController : MonoBehaviour
 	public void Move(float v)
 	{
 		Vector3 targetVelocity = new Vector2(v * 10f, 0);
-		if (isAttacked)
-		{
-			targetVelocity = new Vector2(0, 0);
-		}
+		// cannot ensure animation always finishing and thus always unchecking isattacked
+		//if (isAttacked)
+		//{
+		//	targetVelocity = new Vector2(0, 0);
+		//}
 
 		rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref inputVelocity, smoothingTime);
 

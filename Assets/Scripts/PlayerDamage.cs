@@ -34,8 +34,8 @@ public class PlayerDamage : MonoBehaviour
         {
             hitPoints -= 1;
             HealthManager.setHealth(hitPoints);
-            animator.SetTrigger("isDamaged");
             controller.isAttacked = true;
+            animator.SetTrigger("isDamaged");
         }
     }
 
@@ -45,6 +45,7 @@ public class PlayerDamage : MonoBehaviour
         HealthManager.setHealth(hitPoints);
         gameObject.SetActive(true);
         gameObject.transform.position = spawnPos;
+        gameObject.GetComponent<RobotController>().isAttacked = false;
     }
 
     private void die()

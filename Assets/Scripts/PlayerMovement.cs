@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameObject.GetComponent<PlayerAttack>().isCharing)
+        {
+            xDisplacement = 0;
+        }
         controller.Move(xDisplacement * Time.fixedDeltaTime);
     }
 

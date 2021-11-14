@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a676e428cb62ac74892584813295a9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingRight: 1
   smoothingTime: 0.05
   isAlive: 0
   isAttacked: 0
@@ -279,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84792358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.71, y: -3.98, z: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 769200863}
@@ -326,6 +327,7 @@ MonoBehaviour:
     m_Bits: 1024
   attackCD: 0.5
   attackCDCount: 0
+  isCharing: 0
 --- !u!70 &84792366
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -358,7 +360,7 @@ MonoBehaviour:
   animator: {fileID: 84792364}
   maxHP: 3
   hitPoints: 3
-  spawnPos: {x: -7.71, y: -3.98, z: 1}
+  spawnPos: {x: 0, y: -4, z: 1}
 --- !u!1 &86160427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3360208189726901529, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
   spawnPos: {x: 8, y: -4, z: 1}
+  spawnScale: {x: 2, y: 2, z: 1}
   isEnemy: 0
 --- !u!4 &1711356788
 Transform:

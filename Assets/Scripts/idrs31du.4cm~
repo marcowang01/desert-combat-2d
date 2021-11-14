@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     {
         controller = GetComponent<RobotController>();
         animator = GetComponent<Animator>();
+        xDisplacement = -10;
         enemyTransform = GetComponent<Transform>();
     }
 
@@ -35,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (controller.isAttacking)
+        if (controller.isAttacking && !controller.isAlive)
         {
             controller.Move(0);
         } else

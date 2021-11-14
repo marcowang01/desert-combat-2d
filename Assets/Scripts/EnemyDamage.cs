@@ -14,7 +14,9 @@ public class EnemyDamage : MonoBehaviour
     public int maxHitPoints = 3;
     public int hitPoints = 3;
 
-    public UnityEvent onDeathEvent;
+    //public UnityEvent onDeathEvent;
+
+    private bool isDying = false;
 
     // Update is called once per frame
     void Start()
@@ -26,11 +28,11 @@ public class EnemyDamage : MonoBehaviour
 
     private void Update()
     {
-        if (hitPoints == 0)
+        if (hitPoints == 0 && !isDying)
         {
             animator.SetTrigger("isDead");
             controller.isAlive = false;
-            onDeathEvent.Invoke();
+            gameObject.GetComponent<EnemyMovement>().speed = 0;
         }
         if (GameManager.isGameOver())
         {
@@ -46,6 +48,7 @@ public class EnemyDamage : MonoBehaviour
             hitPoints -= 1;
             animator.SetBool("isDamaged", true);
             controller.isAttacked = true;
+            controller.isAttacking = false;
         }
     }
 

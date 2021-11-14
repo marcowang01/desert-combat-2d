@@ -15,6 +15,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackCD = 0.5f;
     public float attackCDCount = 0;
 
+    private float holdTime = 0;
+    public bool isCharing = false;
+
     void Start()
     {
         controller = GetComponent<RobotController>();
@@ -29,6 +32,20 @@ public class PlayerAttack : MonoBehaviour
             animator.SetTrigger("isAttacking");
             Attack();
             attackCDCount = Time.time + attackCD;
+        } else if (Input.GetKeyDown("k"))
+        {
+            isCharing = true;
+            Charge();
+        } else if (Input.GetKeyUp("k"))
+        {
+            isCharing = false;
+            animator.SetFloat("holdTime", Time.time - holdTime);
+            holdTime = 0;
+            animator.SetBool("isCharging", false);
+            if (holdTime > attackCD)
+            {
+                Attack();
+            }
         }
     }
 
@@ -47,6 +64,12 @@ public class PlayerAttack : MonoBehaviour
             }
             
         }
+    }
+
+    public void Charge()
+    {
+        animator.SetBool("isCharging",  true);
+        holdTime = Time.time;
     }
 
     private void OnDrawGizmosSelected()
