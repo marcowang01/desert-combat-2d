@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3360208189726901522}
   - component: {fileID: 3360208189726901523}
   - component: {fileID: 3360208189726901521}
+  - component: {fileID: 2747231701243021059}
   m_Layer: 10
   m_Name: Mud Guard
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 3360208189726901529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.46, y: -3.95, z: 1}
-  m_LocalScale: {x: -2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3360208189961042245}
   m_Father: {fileID: 0}
@@ -179,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothingTime: 0.05
+  isAttacked: 0
+  isAttacking: 0
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -226,7 +229,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3360208189726901523}
   animator: {fileID: 3360208189726901532}
+  pointsPerHp: 5
+  pointsPerDeath: 5
   hitPoints: 3
+--- !u!114 &2747231701243021059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360208189726901529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a98246934418d4f8425c9e09fa5e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 3360208189726901523}
+  animator: {fileID: 3360208189726901532}
+  enemiesLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyTransform: {fileID: 3360208189726901533}
+  speed: 1
 --- !u!1 &3360208189961042246
 GameObject:
   m_ObjectHideFlags: 0

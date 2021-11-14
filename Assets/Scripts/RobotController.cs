@@ -11,7 +11,8 @@ public class RobotController : MonoBehaviour
 	private Vector3 inputVelocity = Vector3.zero;
 
 	// variables for attack/damage
-	private bool isAttacked;
+	public bool isAttacked = false;
+	public bool isAttacking = false;
 
 	// events for attack
 	public UnityEvent OnDeathEvent;
@@ -34,7 +35,7 @@ public class RobotController : MonoBehaviour
 	public void Move(float v)
 	{
 		//only control the player if grounded or airControl is turned on
-		if (!isAttacked )
+		if (!isAttacked)
 		{
 			Vector3 targetVelocity = new Vector2(v * 10f, 0);
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref inputVelocity, smoothingTime);
@@ -74,6 +75,16 @@ public class RobotController : MonoBehaviour
 	public void onDeath()
     {
 		OnDeathEvent.Invoke();
+    }
+
+	public void finihsedAttack()
+    {
+		isAttacking = false;
+    }
+
+	public void finishedTakingDamage()
+    {
+		isAttacked = false;
     }
 
 }

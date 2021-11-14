@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<RobotController>();
         animator = GetComponent<Animator>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,4 +28,5 @@ public class PlayerMovement : MonoBehaviour
     {
         controller.Move(xDisplacement * Time.fixedDeltaTime);
     }
+
 }

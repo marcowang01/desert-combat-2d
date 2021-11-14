@@ -36,7 +36,12 @@ public class PlayerAttack : MonoBehaviour
             attackPoint.position, size, CapsuleDirection2D.Horizontal, 0, enemyLayer);
         foreach (Collider2D e in enemies)
         {
-            e.GetComponent<EnemyDamage>().takeDamage();
+            EnemyDamage ed = e.GetComponent<EnemyDamage>();
+            if (ed)
+            {
+                ed.takeDamage();
+            }
+            
         }
     }
 

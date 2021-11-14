@@ -28,6 +28,7 @@ public class EnemyAttack : MonoBehaviour
         if (Time.time > coolDownCount)
         {
             animator.SetTrigger("isAttacking");
+            controller.isAttacking = true;
             coolDownCount = Time.time + coolDown;
         }
     }
@@ -37,7 +38,11 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] player = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, playerLayer);
         foreach (Collider2D p in player)
         {
-            p.GetComponent<PlayerDamage>().takeDamage();
+            PlayerDamage pd = p.GetComponent<PlayerDamage>();
+            if (pd)
+            {
+                pd.takeDamage();
+            }
         }
     }
 
