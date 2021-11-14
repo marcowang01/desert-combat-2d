@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+public class RobotController : MonoBehaviour
 {   
 	// variables for movement
 	private bool isFacingRight = true;
@@ -11,12 +11,11 @@ public class PlayerController : MonoBehaviour
 	private Vector3 inputVelocity = Vector3.zero;
 
 	// variables for attack/damage
-	const float attackedRadius = .2f;
 	private bool isAttacked;
 
 	// events for attack
-	public UnityEvent OnAttackAnimDoneEvent;
-	public UnityEvent OnDamageAnimDoneEvent;
+	public UnityEvent OnDamageEvent;
+	public UnityEvent PlayerAttack2Event;
 
 	private Rigidbody2D rb;
 
@@ -25,12 +24,8 @@ public class PlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = 0;
 
-
-		if (OnAttackAnimDoneEvent == null)
-			OnAttackAnimDoneEvent = new UnityEvent();
-
-		if (OnDamageAnimDoneEvent == null)
-			OnDamageAnimDoneEvent = new UnityEvent();
+		if (OnDamageEvent == null)
+			OnDamageEvent = new UnityEvent();
 	}
 
     private void FixedUpdate()
@@ -67,14 +62,9 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = scale;
 	}
 
-	private void attackDone()
+	public void onPlayerAttack2()
     {
-		OnAttackAnimDoneEvent.Invoke();
+		PlayerAttack2Event.Invoke();
     }
-
-	private void damageDone()
-	{
-		OnDamageAnimDoneEvent.Invoke();
-	}
 
 }

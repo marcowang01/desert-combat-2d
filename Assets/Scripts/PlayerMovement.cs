@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public PlayerController controller;
+    public RobotController controller;
     public Animator animator;
 
     public float speed = 1f;
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<PlayerController>();
+        controller = GetComponent<RobotController>();
         animator = GetComponent<Animator>();
     }
 

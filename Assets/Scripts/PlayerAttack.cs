@@ -5,12 +5,17 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-    public PlayerController controller;
+    public RobotController controller;
     public Animator animator;
-    // Start is called before the first frame update
+
+    public Transform attackPoint;
+    public float attackRadius = 10f;
+
+    public LayerMask enemyLayer;
+
     void Start()
     {
-        controller = GetComponent<PlayerController>();
+        controller = GetComponent<RobotController>();
         animator = GetComponent<Animator>();
     }
 
@@ -19,12 +24,27 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown("j"))
         {
-            animator.SetBool("isAttacking", true);
+            animator.SetTrigger("isAttacking");
+            Attack();
         }
     }
 
-    public void OnAttackAnimDone()
+    public void Attack()
     {
-        animator.SetBool("isAttacking", false);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
+
+        foreach(Collider2D e in enemies)
+        {
+            e.GetComponent<EnemyAttack>().takeDamage();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
