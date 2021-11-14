@@ -6,6 +6,14 @@ public class EnemyAttack : MonoBehaviour
 {
     public RobotController controller;
     public Animator animator;
+
+    public float coolDown = 2f;
+    public float coolDownCount = 0;
+
+    public Transform attackPoint;
+    public float attackRadius = 12f;
+    public LayerMask playerLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +25,34 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.time > coolDownCount)
+        {
+            animator.SetTrigger("isAttacking");
+            coolDownCount = Time.time + coolDown;
+        }
+    }
 
+    public void Attack()
+    {
+        Collider2D[] player = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, playerLayer);
+        foreach (Collider2D p in player)
+        {
+            p.GetComponent<PlayerAttack>().takeDamage();
+        }
     }
 
     public void takeDamage()
     {
         animator.SetBool("isDamaged", true);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
 

@@ -9,8 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
 
     public Transform attackPoint;
-    public float attackRadius = 10f;
-
+    public float attackRadius = 12f;
     public LayerMask enemyLayer;
 
     void Start()
@@ -31,12 +30,19 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
-
-        foreach(Collider2D e in enemies)
+        // Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
+        Vector2 size = new Vector2(attackRadius * 2, attackRadius / 2);
+        Collider2D[] enemies = Physics2D.OverlapCapsuleAll(
+            attackPoint.position, size, CapsuleDirection2D.Horizontal, 0, enemyLayer);
+        foreach (Collider2D e in enemies)
         {
             e.GetComponent<EnemyAttack>().takeDamage();
         }
+    }
+
+    public void takeDamage()
+    {
+        animator.SetBool("isDamaged", true);
     }
 
     private void OnDrawGizmosSelected()

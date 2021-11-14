@@ -28,6 +28,10 @@ public class RobotController : MonoBehaviour
 
 		if (OnDamageEvent == null)
 			OnDamageEvent = new UnityEvent();
+		if (PlayerAttack2Event == null)
+			PlayerAttack2Event = new UnityEvent();
+		if (EnemyAttackEvent == null)
+			EnemyAttackEvent = new UnityEvent();
 	}
 
     private void FixedUpdate()
