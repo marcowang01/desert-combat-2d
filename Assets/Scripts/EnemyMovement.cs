@@ -35,7 +35,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!controller.isAttacking)
+        if (controller.isAttacking)
+        {
+            controller.Move(0);
+        } else
         {
             controller.Move(xDisplacement * speed * Time.fixedDeltaTime);
         }

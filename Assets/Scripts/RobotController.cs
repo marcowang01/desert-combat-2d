@@ -34,22 +34,22 @@ public class RobotController : MonoBehaviour
 
 	public void Move(float v)
 	{
-		//only control the player if grounded or airControl is turned on
-		if (!isAttacked)
+		Vector3 targetVelocity = new Vector2(v * 10f, 0);
+		if (isAttacked)
 		{
-			Vector3 targetVelocity = new Vector2(v * 10f, 0);
-			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref inputVelocity, smoothingTime);
+			targetVelocity = new Vector2(0, 0);
+		}
 
-			if (v > 0 && !isFacingRight)
-			{
-				Flip();
-			}
+		rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref inputVelocity, smoothingTime);
 
-			else if (v < 0 && isFacingRight)
-			{
-				Flip();
-			}
+		if (v > 0 && !isFacingRight)
+		{
+			Flip();
+		}
 
+		else if (v < 0 && isFacingRight)
+		{
+			Flip();
 		}
 	}
 
