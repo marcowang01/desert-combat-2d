@@ -9,6 +9,7 @@ public class RobotController : MonoBehaviour
 	private bool isFacingRight = true;
 	[SerializeField] private float smoothingTime = .05f;
 	private Vector3 inputVelocity = Vector3.zero;
+	public bool isAlive = false;
 
 	// variables for attack/damage
 	public bool isAttacked = false;
@@ -29,7 +30,7 @@ public class RobotController : MonoBehaviour
 
 		if (OnDeathEvent == null)
 			OnDeathEvent = new UnityEvent();
-	}
+}
 
 
 	public void Move(float v)
@@ -85,6 +86,11 @@ public class RobotController : MonoBehaviour
 	public void finishedTakingDamage()
     {
 		isAttacked = false;
+    }
+
+	public void onAlive()
+    {
+		isAlive = true;
     }
 
 }

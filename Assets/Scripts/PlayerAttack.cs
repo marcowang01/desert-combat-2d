@@ -12,6 +12,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackRadius = 12f;
     public LayerMask enemyLayer;
 
+    public float attackCD = 0.5f;
+    public float attackCDCount = 0;
+
     void Start()
     {
         controller = GetComponent<RobotController>();
@@ -21,16 +24,17 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("j"))
+        if (Input.GetKeyDown("j") && Time.time > attackCDCount)
         {
             animator.SetTrigger("isAttacking");
             Attack();
+            attackCDCount = Time.time + attackCD;
         }
     }
 
     public void Attack()
     {
-        // Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
+        
         Vector2 size = new Vector2(attackRadius * 2, attackRadius / 2);
         Collider2D[] enemies = Physics2D.OverlapCapsuleAll(
             attackPoint.position, size, CapsuleDirection2D.Horizontal, 0, enemyLayer);

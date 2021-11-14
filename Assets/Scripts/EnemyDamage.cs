@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class EnemyDamage : MonoBehaviour
     public int pointsPerHp = 1;
     public int pointsPerDeath = 5;
 
+    public int maxHitPoints = 3;
     public int hitPoints = 3;
+
+    public UnityEvent onDeathEvent;
 
     // Update is called once per frame
     void Start()
@@ -25,6 +29,8 @@ public class EnemyDamage : MonoBehaviour
         if (hitPoints == 0)
         {
             animator.SetTrigger("isDead");
+            controller.isAlive = false;
+            onDeathEvent.Invoke();
         }
         if (GameManager.isGameOver())
         {

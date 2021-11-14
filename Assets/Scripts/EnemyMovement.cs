@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (controller.isAttacking)
+        if (controller.isAttacking && !controller.isAlive)
         {
             controller.Move(0);
         } else

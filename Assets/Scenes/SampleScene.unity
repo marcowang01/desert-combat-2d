@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothingTime: 0.05
+  isAlive: 0
   isAttacked: 0
   isAttacking: 0
   OnDeathEvent:
@@ -283,7 +284,7 @@ Transform:
   m_Children:
   - {fileID: 769200863}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &84792364
 Animator:
@@ -323,6 +324,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+  attackCD: 0.5
+  attackCDCount: 0
 --- !u!70 &84792366
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -451,7 +454,7 @@ RectTransform:
   - {fileID: 587198689}
   - {fileID: 479130079}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -555,7 +558,7 @@ Transform:
   - {fileID: 1299541756}
   - {fileID: 585666092}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &264258065
 PrefabInstance:
@@ -3377,7 +3380,7 @@ Transform:
   - {fileID: 2041377523}
   - {fileID: 1518230291}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1116879881 stripped
 Transform:
@@ -4055,67 +4058,52 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &1599976437
-PrefabInstance:
+--- !u!1 &1711356786
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3360208189726901529, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_Name
-      value: Mud Guard
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360208189726901533, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711356788}
+  - component: {fileID: 1711356787}
+  m_Layer: 0
+  m_Name: MudSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1711356787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711356786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d8332f3c6d8294c8178965a62a4c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 3360208189726901529, guid: 2952d794c39e0ac478609837d360e1ec, type: 3}
+  spawnPos: {x: 8, y: -4, z: 1}
+  isEnemy: 0
+--- !u!4 &1711356788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711356786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.19, y: 1.17, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1822442807
 PrefabInstance:
   m_ObjectHideFlags: 0
