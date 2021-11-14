@@ -17,20 +17,6 @@ public class EnemySpawner : MonoBehaviour
 
     public bool isEnemy = false;
 
-    void Start()
-    {
-        if (!isEnemy && !spawned)
-        {
-            Spawn();
-            spawned = true;
-        }
-    }
-
-    private void Update()
-    {
-
-    }
-
     public void Spawn()
     {
         int side = 1; 

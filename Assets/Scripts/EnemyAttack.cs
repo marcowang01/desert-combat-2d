@@ -11,7 +11,9 @@ public class EnemyAttack : MonoBehaviour
     public float coolDownCount = 0;
 
     public Transform attackPoint;
+    public Transform attackPoint2;
     public float attackRadius = 12f;
+    public float attackRadius2 = 12f;
     public LayerMask playerLayer;
 
     // Start is called before the first frame update
@@ -27,7 +29,10 @@ public class EnemyAttack : MonoBehaviour
     {
         if (Time.time > coolDownCount)
         {
-            animator.SetTrigger("isAttacking");
+            if (ScoreManager.getScore() > 10)
+                animator.SetTrigger("isRangeAttacking");
+            else 
+                animator.SetTrigger("isAttacking");
             controller.isAttacking = true;
             coolDownCount = Time.time + coolDown;
         }
@@ -46,6 +51,22 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    public void AttackRange()
+    {
+        
+        Vector2 size = new Vector2(attackRadius2 * 2, attackRadius2 / 4);
+        Collider2D[] player = Physics2D.OverlapCapsuleAll(
+            attackPoint2.position, size, CapsuleDirection2D.Horizontal, 0, playerLayer);
+        foreach (Collider2D p in player)
+        {
+            PlayerDamage pd = p.GetComponent<PlayerDamage>();
+            if (pd)
+            {
+                pd.takeDamage();
+            }
+        }
+    }
+
 
     private void OnDrawGizmosSelected()
     {
@@ -54,6 +75,11 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+        if (attackPoint2 == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint2.position, attackRadius2);
     }
 
 
