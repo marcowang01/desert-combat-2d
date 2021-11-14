@@ -36,13 +36,8 @@ public class PlayerAttack : MonoBehaviour
             attackPoint.position, size, CapsuleDirection2D.Horizontal, 0, enemyLayer);
         foreach (Collider2D e in enemies)
         {
-            e.GetComponent<EnemyAttack>().takeDamage();
+            e.GetComponent<EnemyDamage>().takeDamage();
         }
-    }
-
-    public void takeDamage()
-    {
-        animator.SetBool("isDamaged", true);
     }
 
     private void OnDrawGizmosSelected()

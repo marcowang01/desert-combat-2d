@@ -14,7 +14,7 @@ public class RobotController : MonoBehaviour
 	private bool isAttacked;
 
 	// events for attack
-	public UnityEvent OnDamageEvent;
+	public UnityEvent OnDeathEvent;
 	public UnityEvent PlayerAttack2Event;
 
 	public UnityEvent EnemyAttackEvent;
@@ -26,14 +26,10 @@ public class RobotController : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = 0;
 
-		if (OnDamageEvent == null)
-			OnDamageEvent = new UnityEvent();
+		if (OnDeathEvent == null)
+			OnDeathEvent = new UnityEvent();
 	}
 
-    private void FixedUpdate()
-    {
-        
-    }
 
 	public void Move(float v)
 	{
@@ -52,6 +48,7 @@ public class RobotController : MonoBehaviour
 			{
 				Flip();
 			}
+
 		}
 	}
 
@@ -73,5 +70,10 @@ public class RobotController : MonoBehaviour
 	{
 		EnemyAttackEvent.Invoke();
 	}
+
+	public void onDeath()
+    {
+		OnDeathEvent.Invoke();
+    }
 
 }

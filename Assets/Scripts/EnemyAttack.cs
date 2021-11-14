@@ -37,14 +37,10 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] player = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, playerLayer);
         foreach (Collider2D p in player)
         {
-            p.GetComponent<PlayerAttack>().takeDamage();
+            p.GetComponent<PlayerDamage>().takeDamage();
         }
     }
 
-    public void takeDamage()
-    {
-        animator.SetBool("isDamaged", true);
-    }
 
     private void OnDrawGizmosSelected()
     {
