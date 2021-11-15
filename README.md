@@ -3,6 +3,9 @@
  <h3 align="center">Desert Combat 2D Game</h3>
 </div>
 
+### Screenshot
+![image](https://user-images.githubusercontent.com/68684643/141819884-31c199aa-3395-4831-91c2-ffb047b43043.png)
+
 ## Instructions
 ### Installation
 1. download files and load up project in Unity
