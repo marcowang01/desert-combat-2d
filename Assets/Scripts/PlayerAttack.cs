@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackSound;
     public AudioClip hitSound;
+    public AudioClip chargeSound;
 
     void Start()
     {
@@ -51,6 +52,11 @@ public class PlayerAttack : MonoBehaviour
                 Attack();
             }
         }
+        if (isCharging)
+        {
+            audioSource.PlayOneShot(chargeSound, 0.3f);
+
+        }
     }
 
     public void Attack()
@@ -75,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
             audioSource.PlayOneShot(attackSound);
         } else
         {
-            audioSource.PlayOneShot(hitSound);
+            audioSource.PlayOneShot(hitSound, 0.7f);
         }
     }
 

@@ -286,7 +286,7 @@ MonoBehaviour:
   maxHitPoints: 3
   hitPoints: 3
   audioSource: {fileID: 5676437954827332892}
-  deathSound: {fileID: 8300000, guid: 6e234be3413e8bb4da9379e24ded530a, type: 3}
+  deathSound: {fileID: 8300000, guid: 658405236ec8ab247ae0859dc8090cd7, type: 3}
 --- !u!114 &2747231701243021059
 MonoBehaviour:
   m_ObjectHideFlags: 0

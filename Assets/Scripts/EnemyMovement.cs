@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
         controller = GetComponent<RobotController>();
         animator = GetComponent<Animator>();
         enemyTransform = GetComponent<Transform>();
+        initSpeed = Random.Range(1.0f, 1.5f);
+        speed = initSpeed;
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (controller.isAttacking)
+        if (controller.isAttacking || GetComponent<EnemyDamage>().hitPoints == 0)
         {
             controller.Move(0);
         } else

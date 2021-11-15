@@ -332,6 +332,7 @@ MonoBehaviour:
   audioSource: {fileID: 84792368}
   attackSound: {fileID: 8300000, guid: e4fd7b10874402b4fbd1d1ea4985c89f, type: 3}
   hitSound: {fileID: 8300000, guid: b3bbca064eae00048a24a49745f9f829, type: 3}
+  chargeSound: {fileID: 8300000, guid: ec41e0009df6fe042991c6c745fcd684, type: 3}
 --- !u!70 &84792366
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -365,8 +366,6 @@ MonoBehaviour:
   maxHP: 10
   hitPoints: 10
   spawnPos: {x: 0, y: -4, z: 1}
-  audioSource: {fileID: 0}
-  deathSound: {fileID: 0}
 --- !u!82 &84792368
 AudioSource:
   m_ObjectHideFlags: 0
@@ -377,8 +376,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: ec41e0009df6fe042991c6c745fcd684, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
