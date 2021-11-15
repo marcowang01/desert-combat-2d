@@ -37,6 +37,8 @@
 * player will be required to eliminate more enemies each succeeding wave to complete them (3 on wave 1, 15 on wave 2, 36 on wave 3)
 * game over screen or you win screen will appear depending on if player has lost all HP or has cleared all three waves
 * player HP, wave count, score will be reseted every time the game is restarted
+* At the start of wave 3, a white flashing ball will appear. Walking over it will restore 3 health.
+* Health pack will disappear at the end of the game if not collected.
 
 ## Credits
 * background + characters: [https://penusbmic.itch.io/](https://penusbmic.itch.io/)

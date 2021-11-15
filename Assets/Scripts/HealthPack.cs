@@ -34,6 +34,7 @@ public class HealthPack : MonoBehaviour
                 if (pd)
                 {
                     pd.hitPoints += healthBoost;
+                    HealthManager.updateHealth(0);
                     collected = true;
                     animator.enabled = false;
                     sr.enabled = false;
