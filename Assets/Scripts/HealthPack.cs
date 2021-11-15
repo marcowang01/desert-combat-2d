@@ -45,6 +45,8 @@ public class HealthPack : MonoBehaviour
         if (WaveManager.getWave() != 3)
         {
             collected = false;
+            animator.enabled = false;
+            sr.enabled = false;
         }
     }
 }
