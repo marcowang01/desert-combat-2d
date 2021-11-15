@@ -1,0 +1,2 @@
+background + characters: https://penusbmic.itch.io/
+sounds: https://mixkit.co/free-sound-effects/hit/

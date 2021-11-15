@@ -1,0 +1,51 @@
+Aethestic goals:
+1. Satisfying combat
+	- Definition: Combat and movement must feel, look and sound smooth and satisfying
+	- success: players can hear, see each move connect and collide, players feels satisfied hitting enemies
+	- failure: players feel like attacks are weak and combat is boring
+2. Challenging gameplay
+	- Definition: game is easy to play but difficult to master
+	- success: players can easily understand the game, controls are easy to grasp, players need to play multiple times to win
+	- failure: players feel like game is too easy, or too difficult and cannot make progress
+
+Preproduction design:
+- combat and movement animations
+- different player and enemy types
+- 3 lane side scrolling beat-em-up style game play
+- cool and satisfying combat and movements
+- boss fights (waves style game play)
+- core loop: enemies appear -> doge and weave and attack -> even more enemies appear -> clear waves to win
+
+Log:
+11/13: draw tiles on tilemap gameobject 
+11/13: Chose character with multiple attack and movement animations from free assests
+11/13: made idle, walk, run, attack animations
+11/13: linked player movement with controls
+11/13: implemented stationary enemy with idle and damaged animations
+11/13: implemented enemy collisions with player attacks
+11/13: implemented player collisions with enemy attacks
+11/13: implemented enemy hit points and death animationis
+11/14: implemented enemy movement and spawning with no AI (moving left to right)
+11/14: Fixed not detecting enemy collisions and detecting too many enemy collisions during movement
+11/14: Implemented dynamic enemy spawning (1 spawns when 1 dies) and scoring  (1 point per hit)
+11/14: implemented random and scaling enemy spawning 
+11/14: implemeted win and lose conditions and game over screen
+11/14: coded and animated a charge attack for player
+11/14: added secondary ranged attack animation and collisions for enemy
+11/14: adjusted difficulty by reducing enemy count and increasing player hitpoints
+11/14: implemented enemy movement AI
+11/14: implemetned sounds for wave clear, game end, game win, attack miss, attack land, damage, enemy death
+11/14: implemented health packs for 3rd object requirement
+
+Postmortem:
+- set out to build a flushed out beat-em up game with x-y movement and different classes of players and enemies
+- in the end, I aimed to build a fighting game that had basic functionality and still had some variability and polished-ness to it
+- I was able to build a game that had a basic difficulty system, enemy AI and variable moves. 
+- However, movement was only limited to one axis, and I was not able to implement more characters.
+- All the art, animation and sounds turned out to look and feel really great. The combat collisions feel solid and satisfying.
+- The animations, however, were unexpectedly tedious and was very time consuming to slice and program for just one movement.
+- Syncing up damage, attacking, moving and dying with animation cancelling and smooth transitions was also very difficult to debug and design. 
+- I wish I watched more tutorials first on how to divide up my scirpts and having controller scripts, etc. 
+- my components and animations and events ended up being very unorganized which slowed down debugging significantly
+- I learned to do tilemaps, animations, animation controllers and managing more complex characters in general
+
