@@ -16,6 +16,10 @@ public class EnemyAttack : MonoBehaviour
     public float attackRadius2 = 12f;
     public LayerMask playerLayer;
 
+    public AudioSource audioSource;
+    public AudioClip hitMeeleSound;
+    public AudioClip hitRangeSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +33,31 @@ public class EnemyAttack : MonoBehaviour
     {
         if (Time.time > coolDownCount)
         {
-            if (ScoreManager.getScore() > 10)
-                animator.SetTrigger("isRangeAttacking");
-            else 
+            if (WaveManager.getWave() == 2)
+            {
+                if (Random.Range(0.0f, 1.0f) > 0.5)
+                {
+                    animator.SetTrigger("isRangeAttacking");
+                }
+                else
+                {
+                    animator.SetTrigger("isAttacking");
+                }
+            }
+            else if (WaveManager.getWave() == 3)
+            {
+                if (Random.Range(0.0f, 1.0f) > 0.2)
+                {
+                    animator.SetTrigger("isRangeAttacking");
+                }
+                else
+                {
+                    animator.SetTrigger("isAttacking");
+                }
+            } else
+            {
                 animator.SetTrigger("isAttacking");
+            }
             controller.isAttacking = true;
             coolDownCount = Time.time + coolDown;
         }
@@ -47,6 +72,7 @@ public class EnemyAttack : MonoBehaviour
             if (pd)
             {
                 pd.takeDamage();
+                audioSource.PlayOneShot(hitMeeleSound);
             }
         }
     }
@@ -63,6 +89,7 @@ public class EnemyAttack : MonoBehaviour
             if (pd)
             {
                 pd.takeDamage();
+                audioSource.PlayOneShot(hitRangeSound);
             }
         }
     }

@@ -14,6 +14,9 @@ public class EnemyDamage : MonoBehaviour
     public int maxHitPoints = 3;
     public int hitPoints = 3;
 
+    public AudioSource audioSource;
+    public AudioClip deathSound;
+
     //public UnityEvent onDeathEvent;
 
     private bool isDying = false;
@@ -28,12 +31,20 @@ public class EnemyDamage : MonoBehaviour
 
     private void Update()
     {
-        if (hitPoints == 0 && !isDying)
+        if (hitPoints == 0)
         {
             animator.SetTrigger("isDead");
             controller.isAlive = false;
             gameObject.GetComponent<EnemyMovement>().speed = 0;
         }
+
+        if (hitPoints == 0 && !isDying)
+        {
+            isDying = true;
+            audioSource.PlayOneShot(deathSound);
+        }
+
+
         if (GameManager.isGameOver())
         {
             die();
@@ -55,6 +66,7 @@ public class EnemyDamage : MonoBehaviour
     public void die()
     {
         ScoreManager.updateScore(pointsPerDeath);
+        EnemiesLeftManager.updateEnemiesLeft(1);
         Destroy(gameObject);
     }
 }

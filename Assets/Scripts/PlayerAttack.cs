@@ -16,7 +16,11 @@ public class PlayerAttack : MonoBehaviour
     public float attackCDCount = 0;
 
     private float holdTime = 0;
-    public bool isCharing = false;
+    public bool isCharging = false;
+
+    public AudioSource audioSource;
+    public AudioClip attackSound;
+    public AudioClip hitSound;
 
     void Start()
     {
@@ -34,11 +38,11 @@ public class PlayerAttack : MonoBehaviour
             attackCDCount = Time.time + attackCD;
         } else if (Input.GetKeyDown("k"))
         {
-            isCharing = true;
+            isCharging = true;
             Charge();
         } else if (Input.GetKeyUp("k"))
         {
-            isCharing = false;
+            isCharging = false;
             animator.SetFloat("holdTime", Time.time - holdTime);
             holdTime = 0;
             animator.SetBool("isCharging", false);
@@ -51,6 +55,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        bool hit = false;
         
         Vector2 size = new Vector2(attackRadius * 2, attackRadius / 2);
         Collider2D[] enemies = Physics2D.OverlapCapsuleAll(
@@ -61,8 +66,16 @@ public class PlayerAttack : MonoBehaviour
             if (ed)
             {
                 ed.takeDamage();
+                hit = true;
             }
             
+        }
+        if (!hit)
+        {
+            audioSource.PlayOneShot(attackSound);
+        } else
+        {
+            audioSource.PlayOneShot(hitSound);
         }
     }
 

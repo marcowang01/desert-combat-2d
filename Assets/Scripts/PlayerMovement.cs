@@ -26,7 +26,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameObject.GetComponent<PlayerAttack>().isCharing)
+        if (gameObject.GetComponent<PlayerAttack>().isCharging)
+        {
+            xDisplacement = 0;
+        }
+        if (GameManager.isGameOver())
         {
             xDisplacement = 0;
         }

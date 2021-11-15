@@ -19,6 +19,7 @@ public class PlayerDamage : MonoBehaviour
         HealthManager.updateHealth(hitPoints);
     }
 
+    private bool isDying = false;
 
     void Update()
     {
@@ -26,6 +27,12 @@ public class PlayerDamage : MonoBehaviour
         {
             die();
         }
+
+        if (hitPoints == 0 && !isDying)
+        {
+            isDying = true;
+        }
+
     }
 
     public void takeDamage()

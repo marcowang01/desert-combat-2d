@@ -1,0 +1,64 @@
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
+public class WaveManager : MonoBehaviour
+{
+    public static WaveManager Singleton;
+    public Text waveDisplay;
+    public int wave = 1;
+    public int maxWave = 3;
+
+    [System.Serializable]
+    public class IntEvent : UnityEvent<int>{}
+    public IntEvent OnWaveStartEvent;
+
+    public static void setWaveStart(int w)
+    {
+        Singleton.OnWaveStartEvent.Invoke(w);
+    }
+
+    public static int getWave()
+    {
+        return Singleton.wave;
+    }
+
+    public static void nextWaveStart()
+    {
+        Singleton.wave += 1;
+        if (Singleton.wave > 5)
+        {
+            GameManager.setGameWin();
+        }
+        else
+        {
+            WaveManager.setWaveStart(Singleton.wave);
+        }
+    }
+
+    public static void updateText()
+    {
+        Singleton.waveDisplay.text = String.Format("Wave: {0}", Singleton.wave);
+    }
+
+    void Start()
+    {
+        Singleton = this;
+        waveReset();
+    }
+
+    public static void waveReset()
+    {
+        setWaveStart(1);
+    }
+
+    void Update()
+    {
+        EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
+        if (!enemies[0])
+        {
+            nextWaveStart();
+        }
+    }
+}
